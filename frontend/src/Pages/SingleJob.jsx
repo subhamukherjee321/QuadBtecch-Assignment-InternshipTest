@@ -27,7 +27,7 @@ export default function SingleJob() {
   const dispatch = useDispatch();
 
   const getSingleData = async (id) => {
-    const res = await fetch(`http://localhost:8080/jobs?id=${id}`);
+    const res = await fetch(`https://subha-json.vercel.app/jobs?id=${id}`);
     const data = await res.json();
     setSingleData(data);
   };
