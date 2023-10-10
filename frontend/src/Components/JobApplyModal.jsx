@@ -1,19 +1,20 @@
 import {
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+    Button,
+    FormControl,
+    FormLabel,
+    Input,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    Textarea,
 } from "@chakra-ui/react";
 import React from "react";
 
-const JobApplyModal = ({isOpen, onOpen, onClose, initialRef, finalRef}) => {
+const JobApplyModal = ({ isOpen, onClose, initialRef, finalRef }) => {
   return (
     <Modal
       initialFocusRef={initialRef}
@@ -27,13 +28,23 @@ const JobApplyModal = ({isOpen, onOpen, onClose, initialRef, finalRef}) => {
         <ModalCloseButton />
         <ModalBody pb={6}>
           <FormControl>
-            <FormLabel>First name</FormLabel>
-            <Input ref={initialRef} placeholder="First name" />
+            <FormLabel>Name</FormLabel>
+            <Input ref={initialRef} placeholder="Type Name Here" />
           </FormControl>
 
           <FormControl mt={4}>
-            <FormLabel>Last name</FormLabel>
-            <Input placeholder="Last name" />
+            <FormLabel>Email</FormLabel>
+            <Input placeholder="Type Email Here" type="email" />
+          </FormControl>
+
+          <FormControl mt={4}>
+            <FormLabel>Cover Letter Note</FormLabel>
+            <Textarea placeholder="Type Note Here" size="sm" />
+          </FormControl>
+
+          <FormControl mt={4}>
+            <FormLabel>Resume (PDF Format)</FormLabel>
+            <Input type="file" placeholder="Type Note Here" size="sm" />
           </FormControl>
         </ModalBody>
 
