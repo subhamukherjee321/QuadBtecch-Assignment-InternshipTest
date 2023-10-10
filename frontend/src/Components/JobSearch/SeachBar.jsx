@@ -1,6 +1,5 @@
 import { Flex, FormControl, Input } from "@chakra-ui/react";
 import React from "react";
-import PrimaryBtn from "../PrimaryBtn";
 
 const SeachBar = ({ inputValue, setInputValue }) => {
   const handleSubmit = (e) => {

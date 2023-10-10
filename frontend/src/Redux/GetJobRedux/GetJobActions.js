@@ -17,7 +17,7 @@ export const fetchData =
       }
 
       const res = await axios.get(
-        `http://localhost:8080/jobs?_limit=9&_page=${page}${searchURL}`
+        `https://subha-json.vercel.app/jobs?_limit=9&_page=${page}${searchURL}`
       );
       dispatch({ type: GET_DATA, payload: res.data });
       dispatch({ type: SET_LOADING, payload: false });

@@ -14,9 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { login, resetLogin } from "../../../Redux/LoginRedux/Login.Actions";
 import { useNavigate } from "react-router-dom";
-import { PATH } from "../../../Redux/PathRedux/Path.ActionsTypes";
+import { login, resetLogin } from "../../../Redux/LoginRedux/Login.Actions";
 
 const initState = {
   email: "",

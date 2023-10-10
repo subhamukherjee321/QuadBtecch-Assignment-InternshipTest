@@ -1,19 +1,18 @@
-import React, { useState } from "react";
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   Textarea,
   VStack,
-  Heading,
-  Text,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../Redux/PathRedux/Path.ActionsTypes";
-import { useDispatch } from "react-redux";
 
 const ApplyViewApplication = () => {
   const [formData, setFormData] = useState({
