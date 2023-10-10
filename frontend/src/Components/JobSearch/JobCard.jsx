@@ -1,11 +1,6 @@
-import {
-    Box,
-    Button,
-    Flex,
-    Heading,
-    Image
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Image } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const JobCard = ({ items }) => {
   console.log("items: ", items);
@@ -47,7 +42,9 @@ const JobCard = ({ items }) => {
         {items.salary}
       </Box>
       <Box mt={4}>
-        <Button>Read More</Button>
+        <Link to={`/jobs/${items.id}`}>
+          <Button>Read More</Button>
+        </Link>
       </Box>
     </Box>
   );
