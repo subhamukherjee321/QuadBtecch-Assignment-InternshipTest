@@ -1,10 +1,16 @@
 import { Box, Button, FormControl, Input } from "@chakra-ui/react";
 import React from "react";
+import PrimaryBtn from "../PrimaryBtn";
 
 const SeachBar = () => {
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Box maxW={{ base: "78%", sm: "74%", md: "70%", lg: "85%" }} mx="auto">
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormControl
           display="flex"
           flexDirection={{ base: "column", sm: "row" }}
@@ -17,9 +23,7 @@ const SeachBar = () => {
             type="text"
             textAlign={"center"}
           />
-          <Button colorScheme="blue" size="md" type="submit">
-            Button
-          </Button>
+          <PrimaryBtn type={true} text={"Search"} />
         </FormControl>
       </form>
     </Box>
