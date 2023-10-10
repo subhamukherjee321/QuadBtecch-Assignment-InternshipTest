@@ -1,5 +1,3 @@
-// 'use client'
-
 import {
   Box,
   Button,
@@ -7,7 +5,6 @@ import {
   Flex,
   Heading,
   Image,
-  Link,
   List,
   ListItem,
   SimpleGrid,
@@ -16,21 +13,18 @@ import {
   Text,
   VStack,
   useColorModeValue,
-  useDisclosure
 } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import JobApplyModal from "../Components/JobApplyModal";
+import LoginLogout from "../Components/LoginLogout";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { PATH } from "../Redux/PathRedux/Path.ActionsTypes";
 
-export default function Simple() {
+export default function SingleJob() {
   const { id } = useParams();
   const [singleData, setSingleData] = useState([]);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = useRef(null);
-  const finalRef = useRef(null);
-
-  const props = { isOpen, onOpen, onClose, initialRef, finalRef };
+  const dispatch = useDispatch();
 
   const getSingleData = async (id) => {
     const res = await fetch(`http://localhost:8080/jobs?id=${id}`);
@@ -44,6 +38,9 @@ export default function Simple() {
 
   return (
     <>
+      <Box mt={6}>
+        <LoginLogout />
+      </Box>
       <Container maxW={"7xl"}>
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
@@ -161,34 +158,28 @@ export default function Simple() {
               </Box>
             </Stack>
 
-            <Button
-              rounded={"none"}
-              w={"full"}
-              mt={8}
-              size={"lg"}
-              py={"7"}
-              bg={useColorModeValue("gray.900", "gray.50")}
-              color={useColorModeValue("white", "gray.900")}
-              textTransform={"uppercase"}
-              _hover={{
-                transform: "translateY(2px)",
-                boxShadow: "lg",
-              }}
-              onClick={onOpen}
-            >
-              Apply Now
-            </Button>
+            <Link to={"/application"}>
+              <Button
+                rounded={"none"}
+                w={"full"}
+                mt={8}
+                size={"lg"}
+                py={"7"}
+                bg={useColorModeValue("gray.900", "gray.50")}
+                color={useColorModeValue("white", "gray.900")}
+                textTransform={"uppercase"}
+                _hover={{
+                  transform: "translateY(2px)",
+                  boxShadow: "lg",
+                }}
+                onClick={() => dispatch({ type: PATH, payload: true })}
+              >
+                Apply Now
+              </Button>
+            </Link>
           </Stack>
         </SimpleGrid>
       </Container>
-
-      <JobApplyModal
-        finalRef={finalRef}
-        initialRef={initialRef}
-        onClose={onClose}
-        onOpen={onOpen}
-        isOpen={isOpen}
-      />
     </>
   );
 }

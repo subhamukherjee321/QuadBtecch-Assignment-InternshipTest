@@ -1,9 +1,12 @@
-import { Box, Button, Flex, Heading, useMediaQuery } from "@chakra-ui/react";
-import { BsFillMoonFill, BsSunFill } from "react-icons/bs";
-import ToggleSwitch from "./ToggleSwitch/ToggleBtn";
+import {
+  Box,
+  Flex,
+  Heading
+} from "@chakra-ui/react";
+import LoginLogout from "../LoginLogout";
 
 const TopBar = () => {
-  const [isTabletOrSmaller] = useMediaQuery("(max-width: 480px)");
+
   return (
     <Box
       bgColor={"#5964E0"}
@@ -14,12 +17,9 @@ const TopBar = () => {
       pb={{ base: "3rem", sm: "4rem", md: "5rem" }}
     >
       <Flex justify={"space-between"}>
-        <Heading size={"lg"}>DevJobs</Heading>
-        <Flex gap={4} fontSize={"1.5rem"}>
-          {isTabletOrSmaller ? null : <BsSunFill />}
-          <ToggleSwitch />
-          {isTabletOrSmaller ? null : <BsFillMoonFill />}
-        </Flex>
+        <Heading size={"lg"}>QuadBJobs</Heading>
+
+        <LoginLogout />
       </Flex>
     </Box>
   );

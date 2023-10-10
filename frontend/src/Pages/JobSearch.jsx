@@ -1,38 +1,30 @@
 import { Box, Flex, Grid } from "@chakra-ui/react";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import JobCard from "../Components/JobSearch/JobCard";
+import Pagination from "../Components/JobSearch/Pagination";
 import SeachBar from "../Components/JobSearch/SeachBar";
 import TopBar from "../Components/JobSearch/TopBar";
-import Pagination from "../Components/JobSearch/Pagination";
 import Loading from "../Components/Loader/Loading";
+import { fetchData } from "../Redux/GetJobRedux/GetJobActions";
+
+let id = null;
 
 const JobsSearch = () => {
-  const [jobData, setJobData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { data, loading, page } = useSelector((store) => store.getData);
+  const [inputValue, setInputValue] = useState("");
 
-  const getJobsData = async (page) => {
-    setLoading(true);
-    try {
-      const res = await axios.get(
-        `http://localhost:8080/jobs?_limit=9&_page=${page}`
-      );
-      setJobData(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  const handlePage = (value) => {
-    setPage(page + value);
-  };
+  function fetchDatafun(page, inputValue) {
+    clearTimeout(id);
+    id = setTimeout(() => {
+      dispatch(fetchData({ page, query: inputValue }));
+    }, 800);
+  }
 
   useEffect(() => {
-    getJobsData(page);
-  }, [page]);
+    fetchDatafun(page, inputValue);
+  }, [page, inputValue]);
 
   return (
     <Box bgColor={"#eaf6f6"} minH={"100vh"}>
@@ -48,7 +40,7 @@ const JobsSearch = () => {
           justify={"center"}
           align={"center"}
         >
-          <SeachBar />
+          <SeachBar inputValue={inputValue} setInputValue={setInputValue} />
         </Flex>
 
         {loading ? (
@@ -63,17 +55,17 @@ const JobsSearch = () => {
                 "repeat(2, 1fr)",
                 "repeat(3, 1fr)",
                 "repeat(3, 1fr)",
-                "repeat(4, 1fr)"
+                "repeat(4, 1fr)",
               ]}
               mx={"auto"}
               gap={8}
               mt={16}
             >
-              {jobData?.map((ele) => (
+              {data?.map((ele) => (
                 <JobCard key={ele.id} items={ele} />
               ))}
             </Grid>
-            <Pagination handlePage={handlePage} page={page} />{" "}
+            <Pagination />
           </>
         )}
       </Box>

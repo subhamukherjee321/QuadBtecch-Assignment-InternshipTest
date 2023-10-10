@@ -37,7 +37,7 @@ const Login = () => {
         <LinkLoginSignup
           des={"New Here?"}
           link={"Create an account."}
-          to={"/"}
+          to={"/signup"}
         />
       </Box>
     </Box>

@@ -1,9 +1,8 @@
 import { Box, Button, Flex, Heading, Image } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const JobCard = ({ items }) => {
-  console.log("items: ", items);
   return (
     <Box
       bgColor={"white"}
@@ -29,12 +28,15 @@ const JobCard = ({ items }) => {
       </Box>
       <Flex justify={"space-between"} fontSize={"sm"} mt={4}>
         <Box>{items.workFromHome ? "Work From Home" : items.location}</Box>
-        <Box>{items.companyType}</Box>
+        <Box>{items.programmingLanguage}</Box>
       </Flex>
       <Heading size={"md"} my={"0.2rem"} color={"black"}>
         {items.title}
       </Heading>
-      <Box fontWeight={"bold"}>{items.company}</Box>
+      <Flex justify={"space-between"} align={"center"}>
+        <Box fontWeight={"bold"}>{items.company}</Box>
+        <Box fontWeight={"bold"}>{items.companyType}</Box>
+      </Flex>
       <Box fontSize={"sm"} mt={2}>
         {items.description}
       </Box>
@@ -43,7 +45,11 @@ const JobCard = ({ items }) => {
       </Box>
       <Box mt={4}>
         <Link to={`/jobs/${items.id}`}>
-          <Button>Read More</Button>
+          <Button
+            onClick={() => localStorage.setItem("location", window.location)}
+          >
+            Read More
+          </Button>
         </Link>
       </Box>
     </Box>
