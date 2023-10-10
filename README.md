@@ -15,7 +15,7 @@ Welcome to the QuadBTech_Assignment_InternshipTest This React-based assignment a
 
 ## Demo
 
-You can see a live demo of this component [here](https://revent-ai-frontend-assignment-n38x.vercel.app/).
+You can see a live demo of this component [here](https://quad-btecch-assignment-internship-test.vercel.app/).
 
 ## Features
 
