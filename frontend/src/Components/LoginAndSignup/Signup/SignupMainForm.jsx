@@ -8,9 +8,12 @@ import {
   InputGroup,
   InputRightElement,
   Text,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../../Redux/SignupRedux/Signup.Actions";
+import { useNavigate } from "react-router-dom";
 
 const initState = {
   username: "",
@@ -21,14 +24,34 @@ const initState = {
 
 const SignupMainFrom = () => {
   const [signupData, setSignupData] = useState(initState);
+  const [userData, setUserData] = useState([]);
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
   const toast = useToast();
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     let { name, value } = e.target;
     setSignupData({ ...signupData, [name]: value });
   };
+
+  const getUsers = async () => {
+    const res = await fetch("https://subha-json.vercel.app/auth");
+    const data = await res.json();
+    setUserData(data);
+  };
+
+  const matchUser = () => {
+    return userData?.filter((ele) => ele.email === signupData.email);
+  };
+
+  console.log("match", matchUser());
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -118,16 +141,35 @@ const SignupMainFrom = () => {
         position: "top",
       });
     } else {
-      toast({
-        title: "Sign Up Success.",
-        description: "Re-direct to login",
-        status: "success",
-        duration: 1200,
-        isClosable: true,
-        position: "top",
-      });
-      setSignupData(initState);
-      // dispatch(signup(signupData));
+      if (matchUser().length > 0) {
+        toast({
+          title: "User already exist",
+          description: "Re-direct to login",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
+      } else {
+        toast({
+          title: "Sign Up Success.",
+          description: "Re-direct to login",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
+        setSignupData(initState);
+        dispatch(signup(signupData));
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
     }
   };
 

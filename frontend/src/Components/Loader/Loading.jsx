@@ -3,12 +3,12 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div class="cssload-container">
-      <ul class="cssload-flex-container">
+    <div className="cssload-container">
+      <ul className="cssload-flex-container">
         <li>
-          <span class="cssload-loading cssload-one"></span>
-          <span class="cssload-loading cssload-two"></span>
-          <span class="cssload-loading-center"></span>
+          <span className="cssload-loading cssload-one"></span>
+          <span className="cssload-loading cssload-two"></span>
+          <span className="cssload-loading-center"></span>
         </li>
       </ul>
     </div>

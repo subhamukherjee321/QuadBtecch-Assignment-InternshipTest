@@ -1,7 +1,12 @@
 import { Button, Flex } from "@chakra-ui/react";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPage } from "../../Redux/GetJobRedux/GetJobActions";
 
-const Pagination = ({ handlePage, page, text }) => {
+const Pagination = () => {
+  const dispatch = useDispatch();
+  const { page } = useSelector((store) => store.getData);
+  
   return (
     <Flex justify={"center"} align={"center"} my={10} gap={4}>
       <Button
@@ -9,7 +14,7 @@ const Pagination = ({ handlePage, page, text }) => {
         color={"white"}
         _hover={{ bg: "gray.600" }}
         _active={{ bg: "gray.800" }}
-        onClick={() => handlePage(-1)}
+        onClick={() => dispatch(setPage(-1))}
       >
         Previous
       </Button>
@@ -26,7 +31,7 @@ const Pagination = ({ handlePage, page, text }) => {
         color={"white"}
         _hover={{ bg: "gray.600" }}
         _active={{ bg: "gray.800" }}
-        onClick={() => handlePage(1)}
+        onClick={() => dispatch(setPage(1))}
       >
         Next
       </Button>
