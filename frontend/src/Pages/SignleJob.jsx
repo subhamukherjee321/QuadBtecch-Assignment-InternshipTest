@@ -2,28 +2,23 @@
 
 import {
   Box,
-  chakra,
-  Container,
-  Stack,
-  Text,
-  Image,
-  Flex,
-  VStack,
   Button,
+  Container,
+  Flex,
   Heading,
-  SimpleGrid,
-  StackDivider,
-  useColorModeValue,
-  VisuallyHidden,
+  Image,
+  Link,
   List,
   ListItem,
-  Link,
-  useDisclosure,
+  SimpleGrid,
+  Stack,
+  StackDivider,
+  Text,
+  VStack,
+  useColorModeValue,
+  useDisclosure
 } from "@chakra-ui/react";
-import axios from "axios";
-import { async } from "q";
 import { useEffect, useRef, useState } from "react";
-import { MdLocalShipping } from "react-icons/md";
 import { useParams } from "react-router";
 import JobApplyModal from "../Components/JobApplyModal";
 
